@@ -51,7 +51,23 @@ The goal here is to move all cap task business logic into neat little classes th
 
 ### FakeCap
 
-The `FakeCap` class that is handy to use when testing your cap utils.  CapUtil uses it in its own test suite.  It fakes a common subset of cap functions so that they can be safely tested against.  Extend it to suit your own test suite's needs.
+The `FakeCap` helper class is handy to use when testing your cap utils.  CapUtil uses it in its own test suite.  It fakes a common subset of cap functions so that they can be safely tested against.  Extend it to suit your own test suite's needs.
+
+### UnsetVar
+
+The `UnsetVar` helper class is handy for defining cap vars that need to have a value set in some other context.  Think of it as the equivalent of raising a `NotImplementedError` in a method.  If the variable used without being overridden first, the deploy is halted with a message.
+
+To use:
+
+```ruby
+# in your Capfile...
+
+# halt with the default msg ":application var not set."
+set :application, CapUtil::UnsetVar.new(:application)
+
+# halt with the custom msg ":stage var not set (no stage task used)."
+set :stage, CapUtil::UnsetVar(:stage, "no stage task used")
+```
 
 ### RakeTask
 
