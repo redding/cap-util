@@ -17,4 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_development_dependency("assert")
+  gem.add_dependency("capistrano")
+  gem.add_dependency("scmd", ["~>1.0"])
+
 end

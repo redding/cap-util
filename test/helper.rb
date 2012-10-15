@@ -3,3 +3,23 @@
 
 # add root dir to the load path
 $LOAD_PATH.unshift(File.expand_path("../..", __FILE__))
+
+require 'cap-util'
+require 'cap-util/fake_cap'
+
+module TestHelpers
+
+  class AnCapUtil
+    include CapUtil
+
+    def initialize(cap)
+      @cap = cap
+    end
+
+  end
+
+  class FakeCap < CapUtil::FakeCap
+
+  end
+
+end
