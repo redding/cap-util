@@ -1,6 +1,6 @@
 # CapUtil
 
-TODO: Write a gem description
+A set of utilities for writing cap tasks.  Use these to help extract business logic from your tasks and test them.
 
 ## Installation
 
@@ -18,7 +18,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Mixin
+
+The main `CapUtil` mixin can be used to make any class a cap utility.  All the cap util requires is that your class define a `cap` method that returns an instance of a cap invocations.
+
+```ruby
+# in some_great_util.rb
+require 'cap-util'
+
+class SomeGreatUtil
+  include CapUtil
+
+  def initialize(cap)
+    @cap = cap
+  end
+
+  def do_something
+    run "echo something"
+  end
+end
+
+# in Capfile
+require 'some_great_util.rb'
+
+desc "some great util"
+task :some_great_util do
+  SomeGreatUtil.new(self).do_something
+end
+```
+
+The goal here is to move all cap task business logic into neat little classes that can be unit tested.  In addition, the mixin provides a bunch of helpers for running commands, halting tasks, outputting info, and timing tasks.
+
+### FakeCap
+
+The `FakeCap` class that is handy to use when testing your cap utils.  CapUtil uses it in its own test suite.  It fakes a common subset of cap functions so that they can be safely tested against.  Extend it to suit your own test suite's needs.
+
+### RakeTask
+
+This util is handy for running a rake task remotely using a cap task.  It constructs command that cd's to the rakefile root dir and runs the specified task.  That constructed command is then run using cap.
 
 ## Contributing
 
