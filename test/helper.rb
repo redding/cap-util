@@ -18,8 +18,4 @@ module TestHelpers
 
   end
 
-  class FakeCap < CapUtil::FakeCap
-
-  end
-
 end

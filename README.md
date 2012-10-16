@@ -16,9 +16,7 @@ Or install it yourself as:
 
     $ gem install cap-util
 
-## Usage
-
-### Mixin
+## The Mixin
 
 The main `CapUtil` mixin can be used to make any class a cap utility.  All the cap util requires is that your class define a `cap` method that returns an instance of a cap invocations.
 
@@ -49,11 +47,11 @@ end
 
 The goal here is to move all cap task business logic into neat little classes that can be unit tested.  In addition, the mixin provides a bunch of helpers for running commands, halting tasks, outputting info, and timing tasks.
 
-### FakeCap
+## FakeCap helper
 
 The `FakeCap` helper class is handy to use when testing your cap utils.  CapUtil uses it in its own test suite.  It fakes a common subset of cap functions so that they can be safely tested against.  Extend it to suit your own test suite's needs.
 
-### UnsetVar
+## UnsetVar helper
 
 The `UnsetVar` helper class is handy for defining cap vars that need to have a value set in some other context.  Think of it as the equivalent of raising a `NotImplementedError` in a method.  If the variable used without being overridden first, the deploy is halted with a message.
 
@@ -69,9 +67,21 @@ set :application, CapUtil::UnsetVar.new(:application)
 set :stage, CapUtil::UnsetVar(:stage, "no stage task used")
 ```
 
-### RakeTask
+## RakeTask util
 
-This util is handy for running a rake task remotely using a cap task.  It constructs command that cd's to the rakefile root dir and runs the specified task.  That constructed command is then run using cap.
+This util is handy for running a rake task remotely using a cap task.  It constructs a command that cd's to the rakefile root dir and runs the specified task.  That constructed command that command can then be run using cap.
+
+By default, it expects the rakefile to be in the `:current_path` and uses bundler to run `rake`.  These defaults can be overriden by passing options to the constructor.
+
+To use, do something like:
+
+```ruby
+# in your Capfile...
+
+task :some_rake_task do
+  CapUtil::RakeTask.new(self, "a:task:to:run").run
+end
+```
 
 ## Contributing
 
