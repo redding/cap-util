@@ -18,6 +18,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency("assert")
   gem.add_dependency("capistrano")
-  gem.add_dependency("scmd", ["~>1.0"])
+  gem.add_dependency("scmd", ["~>1.1"])
 
 end
