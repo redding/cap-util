@@ -18,12 +18,19 @@ module CapUtil
   module Time
 
     def self.included(receiver)
-      receiver.send(:extend,  TimeMethods)
-      receiver.send(:include, TimeMethods)
+      receiver.send(:extend,  ClassMethods)
+      receiver.send(:include, InstanceMethods)
     end
 
-    module TimeMethods
+    module ClassMethods
       def time(*args, &block); CapUtil.time(*args, &block); end
+    end
+
+    module InstanceMethods
+      def time(name, &block)
+        @cap_util_timers ||= {}
+        CapUtil.time(@cap_util_timers, name, &block)
+      end
     end
 
   end
