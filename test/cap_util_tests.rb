@@ -10,7 +10,7 @@ module CapUtil
     subject { @mod }
 
     should have_imeth :halt, :time
-    should have_imeths :color, :say, :log, :log_error, :log_warning
+    should have_imeths :color, :say, :say_error, :say_warning
     should have_imeths :run_locally, :run_locally_with_stdin
 
   end
@@ -35,8 +35,8 @@ module CapUtil
     should have_cmeth :halt
     should have_imeth :halt
 
-    should have_cmeths :color, :say, :log, :log_error, :log_warning
-    should have_imeths :color, :say, :log, :log_error, :log_warning
+    should have_cmeths :color, :say, :say_error, :say_warning
+    should have_imeths :color, :say, :say_error, :say_warning
 
     should have_cmeths :run_locally, :run_locally_with_stdin
     should have_imeths :run_locally, :run_locally_with_stdin
