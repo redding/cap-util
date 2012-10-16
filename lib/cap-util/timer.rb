@@ -16,11 +16,11 @@ module CapUtil
 
     def start(time=nil)
       CapUtil.say "  Starting #{CapUtil.color @name, :cyan}." if !@quiet
-      @start_time = (time || Time.now)
+      @start_time = (time || ::Time.now)
     end
 
     def end(time=nil)
-      @end_time = (time || Time.now)
+      @end_time = (time || ::Time.now)
       @elapsed_time = @end_time - @start_time
       if !@quiet
         elapsed = self.class.pretty_time(@elapsed_time.to_i)
