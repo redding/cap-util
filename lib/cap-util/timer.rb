@@ -1,3 +1,5 @@
+require 'cap-util'
+
 module CapUtil
   class Timer
 
@@ -13,7 +15,7 @@ module CapUtil
     end
 
     def start(time=nil)
-      say "  Starting #{CapUtil.color @name, :cyan}." if !@quiet
+      CapUtil.say "  Starting #{CapUtil.color @name, :cyan}." if !@quiet
       @start_time = (time || Time.now)
     end
 
@@ -22,7 +24,7 @@ module CapUtil
       @elapsed_time = @end_time - @start_time
       if !@quiet
         elapsed = self.class.pretty_time(@elapsed_time.to_i)
-        say "  #{CapUtil.color @name, :bold, :yellow} completed in"\
+        CapUtil.say "  #{CapUtil.color @name, :bold, :yellow} completed in"\
             " #{CapUtil.color elapsed, :underline, :yellow}."
       end
       @end_time
