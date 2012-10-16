@@ -3,7 +3,7 @@ require 'cap-util/timer'
 module CapUtil
 
   def self.time(timer_set, name, &block)
-    timer_set[name] = CapUtil::Timer.new(name)
+    timer_set[name] ||= CapUtil::Timer.new(name)
     if !block.nil?
       begin
         timer_set[name].start
