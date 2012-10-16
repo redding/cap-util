@@ -7,15 +7,15 @@ module CapUtil
   end
 
   def self.say(msg, *args)
-    Capistrano::CLI.ui.say(msg, *args)
+    Capistrano::CLI.ui.say("    #{msg}", *args)
   end
 
   def self.say_error(msg, *args)
-    say("    #{color "[ERROR]", :bold, :red} #{msg}", *args)
+    say("#{color "[ERROR]", :bold, :red} #{msg}", *args)
   end
 
   def self.say_warning(msg, *args)
-    say("    #{color "[WARN]", :bold, :yellow} #{msg}", *args)
+    say("#{color "[WARN]", :bold, :yellow} #{msg}", *args)
   end
 
   module Say
