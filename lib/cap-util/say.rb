@@ -10,6 +10,10 @@ module CapUtil
     Capistrano::CLI.ui.say("    #{msg}", *args)
   end
 
+  def self.say_bulleted(msg, *args)
+    Capistrano::CLI.ui.say("  * #{msg}", *args)
+  end
+
   def self.say_error(msg, *args)
     say("#{color "[ERROR]", :bold, :red} #{msg}", *args)
   end
@@ -26,10 +30,11 @@ module CapUtil
     end
 
     module SayMethods
-      def color(*args);       CapUtil.color(*args);       end
-      def say(*args);         CapUtil.say(*args);         end
-      def say_error(*args);   CapUtil.say_error(*args);   end
-      def say_warning(*args); CapUtil.say_warning(*args); end
+      def color(*args);        CapUtil.color(*args);        end
+      def say(*args);          CapUtil.say(*args);          end
+      def say_bulleted(*args); CapUtil.say_bulleted(*args); end
+      def say_error(*args);    CapUtil.say_error(*args);    end
+      def say_warning(*args);  CapUtil.say_warning(*args);  end
     end
 
   end

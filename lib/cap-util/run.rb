@@ -5,7 +5,7 @@ module CapUtil
   def self.run_locally(cmd_str)
     cmd = Scmd.new(cmd_str)
 
-    say "  * running `#{cmd}'"
+    say_bulleted "running `#{cmd}'"
     cmd.run
     say_error(cmd.stderr) if !cmd.success?
 
@@ -15,7 +15,7 @@ module CapUtil
   def self.run_locally_with_stdin(cmd_str, input)
     cmd = Scmd.new(cmd_str)
 
-    say "  * running `#{cmd}'"
+    say_bulleted "running `#{cmd}'"
     cmd.run(input)
     say_error(cmd.stderr) if !cmd.success?
 
