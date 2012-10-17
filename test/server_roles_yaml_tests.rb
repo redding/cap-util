@@ -7,7 +7,7 @@ module CapUtil
   class ServerRolesYamlTests < Assert::Context
     desc "the ServerRolesYaml util"
     setup do
-      @roles_yaml = ServerRolesYaml.new(CapUtil::FakeCap.new )
+      @roles_yaml = ServerRolesYaml.new(FakeCap.new )
     end
     subject { @roles_yaml }
 
@@ -20,7 +20,7 @@ module CapUtil
     end
 
     should "use a custom desc and source if given" do
-      yml = ServerRolesYaml.new(CapUtil::FakeCap.new, {
+      yml = ServerRolesYaml.new(FakeCap.new, {
         :desc => 'staging',
         :source => 'the place'
       })

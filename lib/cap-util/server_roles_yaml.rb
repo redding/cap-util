@@ -1,4 +1,3 @@
-require 'yaml'
 require 'cap-util'
 
 module CapUtil
