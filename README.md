@@ -83,6 +83,89 @@ task :some_rake_task do
 end
 ```
 
+## GitBranch util
+
+This util helps when working with git branches.  Right now, it only has a singleton helpers for fetching the current branch the user is on.  This can be useful in setting the `:branch` cap var if you always want to deploy from the branch you are currently on.
+
+```ruby
+set (:branch) { CapUtil::GitBranch.current }
+```
+
+## SharedPath util
+
+This utile helps when working with cap's `shared_path`.  Right now, it only has a method for removing things from the shared_path
+
+```ruby
+CapUtil::SharedPath.new(self).rm_rf 'cached-copy'
+```
+
+## Dynamic Server Roles helpers
+
+CapUtil has a few utils for fetching and applying cap server roles from dynamic data.  It assumes you have your server role data stored in yaml either locally or on some remote location.
+
+### Format
+
+The server role yaml needs to be in a format like:
+
+```yaml
+---
+
+app:
+  server1: [primary]
+  server2: []
+
+db:
+  server3: [primary, no_release]
+```
+
+### ServerRolesYaml util
+
+This util serves as a base for fetching role yaml data.  It provides a framework for subclasses to override and supply the necessary logic to fetch/validate/read yaml data.  Use it to pull local or remote config files using the given hooks.
+
+### ServerRoles util
+
+This util, given a raw yaml string, will model out the roles and apply them to your cap invocation.
+
+### Example
+
+This example shows how a different set of roles could be used for different stages in cap.  The yaml config files are located local to the 'my_server_roles_yaml.rb' file.
+
+```ruby
+# in your Capfile...
+require 'my_server_roles_yaml'
+set (:server_roles_yaml) { MyServerRolesYaml.new(self, stage) }
+set (:server_roles) { CapUtil::ServerRoles.new(self, server_roles_yaml.get) }
+
+# in my_server_roles_yaml.rb
+
+class MyServerRolesYaml < CapUtil::ServerRolesYaml
+
+  # fetch role data from the local config/#{stage}_server_roles.yaml file
+
+  def initialize(cap, stage)
+    super(cap, :desc => stage)
+
+    roles_file_name = "#{stage}_server_roles.yaml"
+    @roles_file_path = File.expand_path("../../../config/#{roles_file_name}", __FILE__)
+  end
+
+  def validate
+    if !valid?
+      say_error "`#{@roles_file_path}' does not exist."
+    end
+  end
+
+  def valid?
+    File.exists?(@roles_file_path)
+  end
+
+  def read
+    File.read(@roles_file_path)
+  end
+
+end
+```
+
 ## Contributing
 
 1. Fork it
