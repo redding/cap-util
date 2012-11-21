@@ -1,11 +1,11 @@
 module CapUtil
 
-  class DeployHalted < RuntimeError
+  class Halted < RuntimeError
     def backtrace; []; end
   end
 
-  def self.halt(msg='deploy halted')
-    raise CapUtil::DeployHalted, color(msg, :bold, :yellow)
+  def self.halt(msg='halted')
+    raise CapUtil::Halted, color(msg, :bold, :yellow)
   end
 
   module Halt
