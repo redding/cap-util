@@ -18,8 +18,8 @@ module CapUtil
   class HaltTests < CapUtilTests
     desc "`halt` util methods"
 
-    should "raise a `DeployHalted` custom exception" do
-      assert_raises(CapUtil::DeployHalted) { subject.halt }
+    should "raise a `Halted` custom exception" do
+      assert_raises(CapUtil::Halted) { subject.halt }
     end
   end
 
@@ -49,10 +49,10 @@ module CapUtil
 
   end
 
-  class DeployHaltedTests < Assert::Context
-    desc "the CapUtility DeployHalted custome exception"
+  class HaltedTests < Assert::Context
+    desc "the CapUtil Halted custom exception"
     setup do
-      @err = CapUtil::DeployHalted.new
+      @err = CapUtil::Halted.new
     end
     subject { @err }
 

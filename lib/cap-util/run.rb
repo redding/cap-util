@@ -2,24 +2,29 @@ require 'scmd'
 
 module CapUtil
 
+  class LocalCmdRunner
+    def initialize(cmd_str)
+      @cmd = Scmd.new(cmd_str)
+    end
+
+    def run!(input=nil)
+      CapUtil.say_bulleted "running `#{@cmd}'"
+      @cmd.run(input)
+
+      if !@cmd.success?
+        CapUtil.say_error(@cmd.stderr)
+        CapUtil.halt
+      end
+      @cmd
+    end
+  end
+
   def self.run_locally(cmd_str)
-    cmd = Scmd.new(cmd_str)
-
-    say_bulleted "running `#{cmd}'"
-    cmd.run
-    say_error(cmd.stderr) if !cmd.success?
-
-    cmd
+    LocalCmdRunner.new(cmd_str).run!
   end
 
   def self.run_locally_with_stdin(cmd_str, input)
-    cmd = Scmd.new(cmd_str)
-
-    say_bulleted "running `#{cmd}'"
-    cmd.run(input)
-    say_error(cmd.stderr) if !cmd.success?
-
-    cmd
+    LocalCmdRunner.new(cmd_str).run!(input)
   end
 
   module Run
