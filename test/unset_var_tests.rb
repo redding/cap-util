@@ -16,15 +16,15 @@ module CapUtil
       assert_kind_of ::Proc, subject
     end
 
-    should "raise `DeployHalted` when called" do
-      assert_raises(CapUtil::DeployHalted) { subject.call }
+    should "raise `Halted` when called" do
+      assert_raises(CapUtil::Halted) { subject.call }
     end
 
     should "raise with a default msg based on the variable name" do
       exp_msg = ":#{@var_name} var not set."
       begin
         subject.call
-      rescue CapUtil::DeployHalted => err
+      rescue CapUtil::Halted => err
         assert_match exp_msg, err.message
       end
     end
@@ -34,7 +34,7 @@ module CapUtil
       unset = CapUtil::UnsetVar.new(@var_name, exp_msg)
       begin
         unset.call
-      rescue CapUtil::DeployHalted => err
+      rescue CapUtil::Halted => err
         assert_match exp_msg, err.message
       end
     end
