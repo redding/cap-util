@@ -7,8 +7,8 @@ Gem::Specification.new do |gem|
   gem.description = %q{A set of utilities for writing cap tasks.}
   gem.summary     = %q{A set of utilities for writing cap tasks.}
 
-  gem.authors     = ["Kelly Redding"]
-  gem.email       = ["kelly@kellyredding.com"]
+  gem.authors     = ["Kelly Redding", "Collin Redding"]
+  gem.email       = ["kelly@kellyredding.com", "collin.redding@me.com"]
   gem.homepage    = "http://github.com/redding/cap-util"
 
   gem.files         = `git ls-files`.split("\n")
@@ -16,8 +16,8 @@ Gem::Specification.new do |gem|
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency("assert")
+  gem.add_development_dependency("assert", ["~>1.0"])
   gem.add_dependency("capistrano")
-  gem.add_dependency("scmd", ["~>1.1"])
+  gem.add_dependency("scmd", ["~>2.0"])
 
 end
