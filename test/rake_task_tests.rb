@@ -49,7 +49,7 @@ module CapUtil
       exp_cmd = "cd /a/current/path &&  bundle exec rake a:task:to:run"
       subject.run
 
-      assert_equal [exp_cmd], @fake_cap.cmds_run.last
+      assert_equal exp_cmd, @fake_cap.cmds_run.last
     end
 
   end

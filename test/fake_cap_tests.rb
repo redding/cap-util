@@ -15,14 +15,11 @@ module CapUtil
     should have_imeths :run, :fetch, :role
     should have_readers :roles, :cmds_run
 
-    should "store off args to run cmd calls" do
+    should "store off cmds that have been run" do
       assert_empty subject.cmds_run
 
-      subject.run(:a, 1)
-      assert_equal [:a, 1], subject.cmds_run.last
-
-      subject.run
-      assert_equal [], subject.cmds_run.last
+      subject.run('a_cmd', 1)
+      assert_equal 'a_cmd', subject.cmds_run.last
     end
 
   end

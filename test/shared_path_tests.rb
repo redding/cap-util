@@ -22,7 +22,7 @@ module CapUtil
       subject.rm_rf 'cached-copy'
       exp_cmd = "rm -rf #{File.expand_path("tmp/shared/cached-copy")}"
 
-      assert_equal [exp_cmd], @fake_cap.cmds_run.last
+      assert_equal exp_cmd, @fake_cap.cmds_run.last
     end
 
   end
