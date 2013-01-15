@@ -19,8 +19,8 @@ module CapUtil
       @struct.respond_to?(method) ? true : super
     end
 
-    def run(*args)
-      @cmds_run << args
+    def run(cmd, *args)
+      @cmds_run << cmd
     end
 
     def fetch(var_name)
