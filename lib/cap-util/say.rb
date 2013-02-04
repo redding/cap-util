@@ -7,11 +7,11 @@ module CapUtil
   end
 
   def self.say(msg, *args)
-    Capistrano::CLI.ui.say("    #{msg}", *args)
+    say_raw("    #{msg}", *args)
   end
 
   def self.say_bulleted(msg, *args)
-    Capistrano::CLI.ui.say("  * #{msg}", *args)
+    say_raw("  * #{msg}", *args)
   end
 
   def self.say_error(msg, *args)
@@ -20,6 +20,10 @@ module CapUtil
 
   def self.say_warning(msg, *args)
     say("#{color "[WARN]", :bold, :yellow} #{msg}", *args)
+  end
+
+  def self.say_raw(msg, *args)
+    Capistrano::CLI.ui.say(msg, *args) if !ENV['CAPUTIL_SILENCE_SAY']
   end
 
   module Say
