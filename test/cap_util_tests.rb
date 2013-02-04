@@ -41,6 +41,7 @@ module CapUtil
     should have_cmeths :run_locally, :run_locally_with_stdin
     should have_imeths :run_locally, :run_locally_with_stdin
     should have_imeths :run, :run_with_stdin, :run_as, :run_as_with_stdin
+    should have_imeths :sudo
 
     should have_cmeth :time
     should have_imeth :time
