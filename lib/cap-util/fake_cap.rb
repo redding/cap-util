@@ -23,6 +23,10 @@ module CapUtil
       @cmds_run << cmd
     end
 
+    def sudo(cmd, *args)
+      run("sudo #{cmd}", *args)
+    end
+
     def fetch(var_name)
       self.send("fetch_#{var_name}")
     end

@@ -59,6 +59,10 @@ module CapUtil
         run_as(user, cmd_str, opts) {|ch, stream, out| ch.send_data(input + "\n")}
       end
 
+      def sudo(*args, &block)
+        cap.sudo(*args, &block)
+      end
+
     end
 
   end
