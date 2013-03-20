@@ -2,23 +2,9 @@
 
 A set of utilities for writing cap tasks.  Use these to help extract business logic from your tasks and test them.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'cap-util'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install cap-util
-
 ## The Mixin
 
-The main `CapUtil` mixin can be used to make any class a cap utility.  All the cap util requires is that your class define a `cap` method that returns an instance of a cap invocations.
+The main `CapUtil` mixin can be used to make any class a cap utility.  All the cap util requires is that your class define a `cap` method that returns an instance of a cap invocations.  The mixin provides a default `attr_accessor :cap` for you; set an `@cap` instance variable to use it or override it with a custom `def cap` method.
 
 ```ruby
 # in some_great_util.rb
@@ -165,6 +151,20 @@ class MyServerRolesYaml < CapUtil::ServerRolesYaml
 
 end
 ```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'cap-util'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install cap-util
 
 ## Contributing
 
