@@ -16,8 +16,8 @@ Gem::Specification.new do |gem|
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency("assert", ["~>1.0"])
+  gem.add_development_dependency("assert", ["~> 2.0"])
   gem.add_dependency("capistrano")
-  gem.add_dependency("scmd", ["~>2.0"])
+  gem.add_dependency("scmd", ["~> 2.0"])
 
 end
