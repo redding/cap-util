@@ -1,13 +1,12 @@
 require 'assert'
-
 require 'cap-util/fake_cap'
 
-module CapUtil
+class CapUtil::FakeCap
 
-  class FakeCapTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the fake cap helper"
     setup do
-      @fc = FakeCap.new
+      @fc = CapUtil::FakeCap.new
     end
     subject { @fc }
 

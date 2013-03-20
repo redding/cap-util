@@ -1,12 +1,11 @@
 require 'assert'
-
 require 'cap-util/git_branch'
 
-module CapUtil
+class CapUtil::GitBranch
 
-  class GitBranchTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the GitBranch util"
-    subject { GitBranch }
+    subject { CapUtil::GitBranch }
 
     should have_imeth :current
 

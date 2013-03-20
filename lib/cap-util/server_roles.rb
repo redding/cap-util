@@ -61,8 +61,8 @@ module CapUtil
 
       attr_reader :hostname, :options
 
-      def initialize(name, options_list=[])
-        @hostname = "#{name}.reelfx.com"
+      def initialize(hostname, options_list=nil)
+        @hostname = hostname
         @options = {}
 
         # so, weird cap bug.  options have to match type when using them in
@@ -72,7 +72,7 @@ module CapUtil
         # so, I'm just defining each option, both in string (how it comes from
         # the configs) and symbol form.
 
-        options_list.each do |option|
+        (options_list || []).each do |option|
           @options[option.to_s]   = true
           @options[option.to_sym] = true
         end
