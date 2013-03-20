@@ -1,22 +1,13 @@
-# this file is automatically required in when you require 'assert' in your tests
-# put test helpers here
-ENV['CAPUTIL_SILENCE_SAY'] = 'yes'
+# this file is automatically required when you run `assert`
+# put any test helpers here
 
-# add root dir to the load path
+# add the root dir to the load path
 $LOAD_PATH.unshift(File.expand_path("../..", __FILE__))
+
+# require pry for debugging (`binding.pry`)
+require 'pry'
+
+ENV['CAPUTIL_SILENCE_SAY'] = 'yes'
 
 require 'cap-util'
 require 'cap-util/fake_cap'
-
-module TestHelpers
-
-  class AnCapUtil
-    include CapUtil
-
-    def initialize(cap)
-      @cap = cap
-    end
-
-  end
-
-end

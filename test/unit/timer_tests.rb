@@ -1,13 +1,12 @@
 require 'assert'
-
 require 'cap-util/timer'
 
-module CapUtil
+class CapUtil::Timer
 
-  class TimerTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the Timer helper class"
     setup do
-      @timer_util = Timer.new('a timer', :quiet)
+      @timer_util = CapUtil::Timer.new('a timer', :quiet)
     end
     subject { @timer_util }
 
@@ -41,7 +40,7 @@ module CapUtil
 
       assert_equal exp_end_time, subject.end_time
       assert_equal (exp_end_time - exp_start_time), subject.elapsed_time
-      assert_equal "0:01", Timer.pretty_time(subject.elapsed_time.to_i)
+      assert_equal "0:01", CapUtil::Timer.pretty_time(subject.elapsed_time.to_i)
     end
 
   end

@@ -1,8 +1,8 @@
+require 'cap-util/version'
 require 'cap-util/say'
-require 'cap-util/run'
 require 'cap-util/halt'
+require 'cap-util/run'
 require 'cap-util/time'
-
 require 'cap-util/unset_var'
 
 module CapUtil

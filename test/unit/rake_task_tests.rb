@@ -1,17 +1,16 @@
 require 'assert'
-
 require 'cap-util/rake_task'
 
-module CapUtil
+class CapUtil::RakeTask
 
-  class RakeTaskTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the rake task util"
     setup do
-      @fake_cap = FakeCap.new
+      @fake_cap = CapUtil::FakeCap.new
       @fake_cap.fetch_rake = "bundle exec rake"
       @fake_cap.current_path = "/a/current/path"
       @fake_cap.release_path = "/dat/release/path"
-      @rake_task_util = RakeTask.new(@fake_cap, 'a:task:to:run')
+      @rake_task_util = CapUtil::RakeTask.new(@fake_cap, 'a:task:to:run')
     end
     subject { @rake_task_util }
 
@@ -27,7 +26,7 @@ module CapUtil
     end
 
     should "run the task with a custom rake if given" do
-      task = RakeTask.new(@fake_cap, '', :rake => '/path/to/rake')
+      task = CapUtil::RakeTask.new(@fake_cap, '', :rake => '/path/to/rake')
       assert_match '/path/to/rake', task.cmd
     end
 
@@ -36,12 +35,12 @@ module CapUtil
     end
 
     should "use a custom cap path if given" do
-      task = RakeTask.new(@fake_cap, '', :root => :release_path)
+      task = CapUtil::RakeTask.new(@fake_cap, '', :root => :release_path)
       assert_match "cd #{@fake_cap.release_path} &&", task.cmd
     end
 
     should "use a custom env var string if given" do
-      task = RakeTask.new(@fake_cap, '', :env => "FOO=bar")
+      task = CapUtil::RakeTask.new(@fake_cap, '', :env => "FOO=bar")
       assert_match "FOO=bar bundle", task.cmd
     end
 

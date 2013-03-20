@@ -1,3 +1,5 @@
+require 'cap-util/halt'
+
 module CapUtil
   module UnsetVar
 

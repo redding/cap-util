@@ -1,4 +1,4 @@
-require 'cap-util'
+require 'cap-util/say'
 
 module CapUtil
   class Timer
