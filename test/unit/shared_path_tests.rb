@@ -1,18 +1,17 @@
 require 'assert'
 require 'fileutils'
 require 'pathname'
-
 require 'cap-util/shared_path'
 
-module CapUtil
+class CapUtil::SharedPath
 
-  class SharedPathTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the SharedPath util"
     setup do
-      @fake_cap = FakeCap.new
+      @fake_cap = CapUtil::FakeCap.new
       @fake_cap.shared_path = Pathname.new File.expand_path("tmp/shared")
 
-      @shared_path = SharedPath.new(@fake_cap)
+      @shared_path = CapUtil::SharedPath.new(@fake_cap)
     end
     subject { @shared_path }
 

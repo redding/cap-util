@@ -1,6 +1,7 @@
 require 'assert'
+require 'test/support/an_cap_util'
 
-module CapUtil
+module CapUtilSysTests
 
   class CapUtilTests < Assert::Context
     desc "the CapUtil module"
@@ -26,7 +27,7 @@ module CapUtil
   class CapUtilMixinTests < Assert::Context
     desc "the CapUtil mixin"
     setup do
-      @cap_util = TestHelpers::AnCapUtil.new(FakeCap.new)
+      @cap_util = TestHelpers::AnCapUtil.new(CapUtil::FakeCap.new)
     end
     subject { @cap_util }
 

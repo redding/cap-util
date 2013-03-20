@@ -1,13 +1,12 @@
 require 'assert'
-
 require 'cap-util/run'
 
-module CapUtil
+class CapUtil::LocalCmdRunner
 
-  class LocalCmdRunnerTests < Assert::Context
+  class BaseTests < Assert::Context
     desc "the local cmd runner helper class"
     setup do
-      @cmd_runner = LocalCmdRunner.new("echo hi")
+      @cmd_runner = CapUtil::LocalCmdRunner.new("echo hi")
     end
     subject { @cmd_runner }
 
