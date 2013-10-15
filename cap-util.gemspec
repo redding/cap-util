@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description = %q{A set of utilities for writing cap tasks.}
   gem.summary     = %q{A set of utilities for writing cap tasks.}
   gem.homepage    = "http://github.com/redding/cap-util"
+  gem.license     = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
