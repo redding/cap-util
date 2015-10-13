@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem 'rake'
+gem 'rake', "~> 10.4.0"
 gem 'pry',  "~> 0.9.0"
 
 # Lock down the version of capistrano dependencies in use so they don't try to
