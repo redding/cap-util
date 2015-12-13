@@ -3,12 +3,12 @@ require 'cap-util/timer'
 
 class CapUtil::Timer
 
-  class BaseTests < Assert::Context
-    desc "the Timer helper class"
+  class UnitTests < Assert::Context
+    desc "CapUtil::Timer"
     setup do
       @timer_util = CapUtil::Timer.new('a timer', :quiet)
     end
-    subject { @timer_util }
+    subject{ @timer_util }
 
     should have_readers :name, :start_time, :end_time, :elapsed_time
     should have_imeths  :start, :end

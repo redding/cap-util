@@ -3,9 +3,9 @@ require 'cap-util/git_branch'
 
 class CapUtil::GitBranch
 
-  class BaseTests < Assert::Context
-    desc "the GitBranch util"
-    subject { CapUtil::GitBranch }
+  class UnitTests < Assert::Context
+    desc "CapUtil::GitBranch"
+    subject{ CapUtil::GitBranch }
 
     should have_imeth :current
 

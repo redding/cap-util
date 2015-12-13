@@ -8,7 +8,7 @@ module CapUtil
     include CapUtil
     attr_reader :desc, :source
 
-    def initialize(cap, opts=nil)
+    def initialize(cap, opts = nil)
       opts ||= {}
 
       @cap    = cap

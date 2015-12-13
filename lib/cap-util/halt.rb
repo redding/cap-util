@@ -4,7 +4,7 @@ module CapUtil
     def backtrace; []; end
   end
 
-  def self.halt(msg='halted')
+  def self.halt(msg = 'halted')
     raise CapUtil::Halted, color(msg, :bold, :yellow)
   end
 

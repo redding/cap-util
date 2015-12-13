@@ -8,7 +8,7 @@ module CapUtil
   class SharedPath
     include CapUtil
 
-    def initialize(cap, path=nil)
+    def initialize(cap, path = nil)
       @cap = cap
       @shared_path = File.expand_path(path || cap.shared_path)
     end

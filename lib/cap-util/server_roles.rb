@@ -61,7 +61,7 @@ module CapUtil
 
       attr_reader :hostname, :options
 
-      def initialize(hostname, options_list=nil)
+      def initialize(hostname, options_list = nil)
         @hostname = hostname
         @options = {}
 

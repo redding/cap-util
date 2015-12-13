@@ -1,23 +1,6 @@
-require 'scmd'
+require 'cap-util/local_cmd_runner'
 
 module CapUtil
-
-  class LocalCmdRunner
-    def initialize(cmd_str)
-      @cmd = Scmd.new(cmd_str)
-    end
-
-    def run!(input=nil)
-      CapUtil.say_bulleted "running `#{@cmd}'"
-      @cmd.run(input)
-
-      if !@cmd.success?
-        CapUtil.say_error(@cmd.stderr)
-        CapUtil.halt
-      end
-      @cmd
-    end
-  end
 
   def self.run_locally(cmd_str)
     LocalCmdRunner.new(cmd_str).run!
@@ -46,11 +29,11 @@ module CapUtil
         cap.run(*args, &block)
       end
 
-      def run_with_stdin(cmd_str, input, opts={})
+      def run_with_stdin(cmd_str, input, opts = {})
         run(cmd_str, opts.merge(:pty => true)) {|ch, stream, out| ch.send_data(input + "\n")}
       end
 
-      def run_as(user, cmd_str, opts={}, &block)
+      def run_as(user, cmd_str, opts = {}, &block)
         as_cmd_str = "su #{user} -lc '#{cmd_str.gsub("'", "\\'")}'"
         run(as_cmd_str, opts, &block)
       end

@@ -3,16 +3,16 @@ require 'cap-util/rake_task'
 
 class CapUtil::RakeTask
 
-  class BaseTests < Assert::Context
-    desc "the rake task util"
+  class UnitTests < Assert::Context
+    desc "CapUtil::RakeTask"
     setup do
       @fake_cap = CapUtil::FakeCap.new
       @fake_cap.fetch_rake = "bundle exec rake"
       @fake_cap.current_path = "/a/current/path"
       @fake_cap.release_path = "/dat/release/path"
-      @rake_task_util = CapUtil::RakeTask.new(@fake_cap, 'a:task:to:run')
+      @util = CapUtil::RakeTask.new(@fake_cap, 'a:task:to:run')
     end
-    subject { @rake_task_util }
+    subject{ @util }
 
     should have_imeths :run
 

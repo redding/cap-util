@@ -3,13 +3,13 @@ require 'cap-util/unset_var'
 
 module CapUtil::UnsetVar
 
-  class BaseTests < Assert::Context
-    desc "the unset var helper"
+  class UnitTests < Assert::Context
+    desc "CapUtil::UnsetVar"
     setup do
       @var_name = 'test'
       @unset = CapUtil::UnsetVar.new(@var_name)
     end
-    subject { @unset }
+    subject{ @unset }
 
     should "be a proc" do
       assert_kind_of ::Proc, subject

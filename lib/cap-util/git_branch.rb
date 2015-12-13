@@ -4,7 +4,7 @@ module CapUtil
   class GitBranch
     include CapUtil
 
-    def self.current(action=:run)
+    def self.current(action = :run)
       git_cmd = "git symbolic-ref HEAD"
       if action == :run
         say "Fetching #{color "current git branch", :bold, :cyan} from HEAD"

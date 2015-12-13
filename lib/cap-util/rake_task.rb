@@ -11,7 +11,7 @@ module CapUtil
 
     attr_reader :cmd
 
-    def initialize(cap, task, opts=nil)
+    def initialize(cap, task, opts = nil)
       @cap = cap
 
       opts        ||= {}

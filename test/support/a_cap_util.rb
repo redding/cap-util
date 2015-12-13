@@ -2,7 +2,7 @@ require 'cap-util'
 
 module TestHelpers
 
-  class AnCapUtil
+  class ACapUtil
     include CapUtil
 
     def initialize(cap)

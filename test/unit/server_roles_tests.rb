@@ -3,8 +3,8 @@ require 'cap-util/server_roles'
 
 class CapUtil::ServerRoles
 
-  class BaseTests < Assert::Context
-    desc "the ServerRoles handler"
+  class UnitTests < Assert::Context
+    desc "CapUtil::ServerRoles"
     setup do
       roles_yaml = <<YAML
 ---
@@ -15,7 +15,7 @@ YAML
       @fake_cap = CapUtil::FakeCap.new
       @server_roles = CapUtil::ServerRoles.new(@fake_cap, roles_yaml)
     end
-    subject { @server_roles }
+    subject{ @server_roles }
 
     should have_reader :roles
     should have_imeth :apply

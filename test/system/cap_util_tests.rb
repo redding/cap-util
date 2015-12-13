@@ -1,10 +1,12 @@
 require 'assert'
-require 'test/support/an_cap_util'
+require 'cap-util'
 
-module CapUtilSysTests
+require 'test/support/a_cap_util'
 
-  class CapUtilTests < Assert::Context
-    desc "the CapUtil module"
+module CapUtil
+
+  class ModuleSystemTests < Assert::Context
+    desc "CapUtil the module"
     setup do
       @mod = CapUtil
     end
@@ -16,18 +18,18 @@ module CapUtilSysTests
 
   end
 
-  class HaltTests < CapUtilTests
-    desc "`halt` util methods"
+  class HaltTests < ModuleSystemTests
+    desc "`halt` methods"
 
     should "raise a `Halted` custom exception" do
       assert_raises(CapUtil::Halted) { subject.halt }
     end
   end
 
-  class CapUtilMixinTests < Assert::Context
-    desc "the CapUtil mixin"
+  class MixinSystemTests < Assert::Context
+    desc "CapUtil the mixin"
     setup do
-      @cap_util = TestHelpers::AnCapUtil.new(CapUtil::FakeCap.new)
+      @cap_util = TestHelpers::ACapUtil.new(CapUtil::FakeCap.new)
     end
     subject { @cap_util }
 
@@ -51,8 +53,8 @@ module CapUtilSysTests
 
   end
 
-  class HaltedTests < Assert::Context
-    desc "the CapUtil Halted custom exception"
+  class HaltedTests < ModuleSystemTests
+    desc "Halted"
     setup do
       @err = CapUtil::Halted.new
     end

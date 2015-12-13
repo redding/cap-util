@@ -3,16 +3,16 @@ require 'cap-util/fake_cap'
 
 class CapUtil::FakeCap
 
-  class BaseTests < Assert::Context
-    desc "the fake cap helper"
+  class UnitTests < Assert::Context
+    desc "CapUtil::FakeCap"
     setup do
       @fc = CapUtil::FakeCap.new
     end
-    subject { @fc }
+    subject{ @fc }
 
+    should have_readers :roles, :cmds_run
     should have_imeths :method_missing, :respond_to?
     should have_imeths :run, :sudo, :fetch, :role
-    should have_readers :roles, :cmds_run
 
     should "store off cmds that have been run" do
       assert_empty subject.cmds_run

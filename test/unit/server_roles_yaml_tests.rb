@@ -3,12 +3,12 @@ require 'cap-util/server_roles_yaml'
 
 class CapUtil::ServerRolesYaml
 
-  class BaseTests < Assert::Context
-    desc "the ServerRolesYaml util"
+  class UnitTests < Assert::Context
+    desc "CapUtil::ServerRolesYaml"
     setup do
-      @roles_yaml = CapUtil::ServerRolesYaml.new(CapUtil::FakeCap.new )
+      @roles_yaml = CapUtil::ServerRolesYaml.new(CapUtil::FakeCap.new)
     end
-    subject { @roles_yaml }
+    subject{ @roles_yaml }
 
     should have_imeths :get, :validate, :valid?, :read
     should have_reader :desc, :source

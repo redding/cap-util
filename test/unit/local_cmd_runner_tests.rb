@@ -1,14 +1,14 @@
 require 'assert'
-require 'cap-util/run'
+require 'cap-util/local_cmd_runner'
 
 class CapUtil::LocalCmdRunner
 
-  class BaseTests < Assert::Context
-    desc "the local cmd runner helper class"
+  class UnitTests < Assert::Context
+    desc "CapUtil::LocalCmdRunner"
     setup do
-      @cmd_runner = CapUtil::LocalCmdRunner.new("echo hi")
+      @runner = CapUtil::LocalCmdRunner.new("echo hi")
     end
-    subject { @cmd_runner }
+    subject{ @runner }
 
     should have_imeth :run!
 

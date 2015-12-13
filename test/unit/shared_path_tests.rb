@@ -1,19 +1,20 @@
 require 'assert'
+require 'cap-util/shared_path'
+
 require 'fileutils'
 require 'pathname'
-require 'cap-util/shared_path'
 
 class CapUtil::SharedPath
 
-  class BaseTests < Assert::Context
-    desc "the SharedPath util"
+  class UnitTests < Assert::Context
+    desc "CapUtil::SharedPath"
     setup do
       @fake_cap = CapUtil::FakeCap.new
       @fake_cap.shared_path = Pathname.new File.expand_path("tmp/shared")
 
       @shared_path = CapUtil::SharedPath.new(@fake_cap)
     end
-    subject { @shared_path }
+    subject{ @shared_path }
 
     should have_imeths :rm_rf
 
