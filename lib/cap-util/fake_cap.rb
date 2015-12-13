@@ -1,6 +1,7 @@
 require 'ostruct'
 
 module CapUtil
+
   class FakeCap
 
     attr_reader :roles, :cmds_run
@@ -36,4 +37,5 @@ module CapUtil
     end
 
   end
+
 end
