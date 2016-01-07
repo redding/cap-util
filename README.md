@@ -53,19 +53,19 @@ set :application, CapUtil::UnsetVar.new(:application)
 set :stage, CapUtil::UnsetVar(:stage, "no stage task used")
 ```
 
-## RakeTask util
+## BundlerCmd util
 
-This util is handy for running a rake task remotely using a cap task.  It constructs a command that cd's to the rakefile root dir and runs the specified task.  That constructed command that command can then be run using cap.
+This util is handy for running bundler system cmds remotely using a cap task.  It constructs a command that cd's to a root dir with a Gemfile and runs the specified cmd using `bundle exec`.
 
-By default, it expects the rakefile to be in the `:current_path` and uses bundler to run `rake`.  These defaults can be overriden by passing options to the constructor.
+By default, it expects the Gemfile to be in the `:current_path` and uses no ENV vars.  These defaults can be overriden by passing options to the constructor.
 
 To use, do something like:
 
 ```ruby
 # in your Capfile...
 
-task :some_rake_task do
-  CapUtil::RakeTask.new(self, "a:task:to:run").run
+task :some_bundler_task do
+  CapUtil::BundlerCmd.new(self, 'ruby script/do_someting.rb').run
 end
 ```
 
