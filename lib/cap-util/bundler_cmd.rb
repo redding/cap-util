@@ -26,10 +26,12 @@ module CapUtil
     module TestHelpers
 
       def assert_bundler_cmd(util, *args)
-        assert_kind_of BundlerCmd, util
+        with_backtrace(caller) do
+          assert_kind_of BundlerCmd, util
 
-        exp = BundlerCmd.new(*args)
-        assert_equal exp.cmd, util.cmd
+          exp = BundlerCmd.new(*args)
+          assert_equal exp.cmd, util.cmd
+        end
       end
 
     end
