@@ -9,6 +9,15 @@ require 'pry'
 
 require 'test/support/factory'
 
+# 1.8.7 backfills
+
+# Array#sample
+if !(a = Array.new).respond_to?(:sample) && a.respond_to?(:choice)
+  class Array
+    alias_method :sample, :choice
+  end
+end
+
 ENV['CAPUTIL_SILENCE_SAY'] = 'yes'
 
 require 'cap-util'
