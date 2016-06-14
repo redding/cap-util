@@ -104,7 +104,7 @@ YAML
     end
 
     should "build its options with both string and symbol keys" do
-      server = CapUtil::ServerRoles::ServerDef.new('opts1', 'primary')
+      server = CapUtil::ServerRoles::ServerDef.new('opts1', ['primary'])
 
       assert_equal true, server.options[:primary]
       assert_equal true, server.options['primary']
