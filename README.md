@@ -1,3 +1,5 @@
+=== **This has been archived and is not maintained.** ===
+
 # CapUtil
 
 A set of utilities for writing cap tasks.  Use these to help extract business logic from your tasks and test them.
